@@ -1,27 +1,22 @@
+
+
 window.onload = () => {
-    const routes = {
-        '#': homePage(),
-        '#page': page(),
-        '#page1': page1(),
-        '#page2': page2()
-    }
-    router(routes);
+    router();
 }
 
 window.onhashchange = () => {
-    const routes = {
-        '#': homePage(),
-        '#page': page(),
-        '#page1': page1(),
-        '#page2': page2()
-    }
-    router(routes);
+    router();
 }
 
-const router = (routes) => {
+const router = () => {
     const mainContent = document.getElementById('mainContent');
     const route =  window.location.hash || "#";
+    const routes = allRoutes();
     mainContent.innerHTML = routes[route];
+}
+
+const page1_page2 = () => {
+    return '<h1>#page1/page2</h1>';
 }
 
 const homePage = () => {
@@ -38,4 +33,14 @@ const page1 = () => {
 
 const page2 = () => {
     return '<h1>Page2</h1>'
+}
+
+const allRoutes = () => {
+    return {
+        '#': homePage(),
+        '#page': page(),
+        '#page1': page1(),
+        '#page2': page2(),
+        '#page1/page2': page1_page2()
+    }
 }
