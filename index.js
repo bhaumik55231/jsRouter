@@ -10,13 +10,17 @@ window.onhashchange = () => {
 
 const router = () => {
     const mainContent = document.getElementById('mainContent');
-    const route =  window.location.hash || "#";
+    const hash = window.location.hash;
+    const index = hash.indexOf('?');
+    const parameters = hash.slice(index+1, hash.length);
+    console.log(parameters);
+    const route =  index !== -1 ? hash.slice(0, index) : hash || '#';
     const routes = allRoutes();
     mainContent.innerHTML = routes[route];
 }
 
 const page1_page2 = () => {
-    return '<h1>#page1/page2</h1>';
+    return '<h1>page1/page2</h1>';
 }
 
 const homePage = () => {
