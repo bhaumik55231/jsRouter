@@ -12,7 +12,8 @@ const router = () => {
     const mainContent = document.getElementById('mainContent');
     const hash = window.location.hash;
     const index = hash.indexOf('?');
-    const parameters = hash.slice(index+1, hash.length);
+    const query = hash.slice(index+1, hash.length);
+    const parameters = getparameters(query);
     console.log(parameters);
     const route =  index !== -1 ? hash.slice(0, index) : hash || '#';
     const routes = allRoutes();
@@ -47,4 +48,13 @@ const allRoutes = () => {
         '#page2': page2(),
         '#page1/page2': page1_page2()
     }
+}
+
+const getparameters = (query) => {
+    const array = query.split('&');
+    let obj = {};
+    array.forEach(value => {
+        obj[value.split('=')[0]] = value.split('=')[1];
+    });
+    return obj;
 }
