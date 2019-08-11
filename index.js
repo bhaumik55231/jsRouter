@@ -12,8 +12,7 @@ const router = () => {
     const mainContent = document.getElementById('mainContent');
     const hash = window.location.hash;
     const index = hash.indexOf('?');
-    const query = hash.slice(index+1, hash.length);
-    const parameters = getparameters(query);
+    const parameters = index !== -1 ? getparameters(hash.slice(index+1, hash.length)) : {};
     console.log(parameters);
     const route =  index !== -1 ? hash.slice(0, index) : hash || '#';
     const routes = allRoutes();
