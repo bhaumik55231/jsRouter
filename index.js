@@ -1,5 +1,3 @@
-
-
 window.onload = () => {
     router();
 }
@@ -10,7 +8,7 @@ window.onhashchange = () => {
 
 const router = () => {
     const mainContent = document.getElementById('mainContent');
-    const hash = window.location.hash;
+    const hash = decodeURIComponent(window.location.hash);
     const index = hash.indexOf('?');
     const parameters = index !== -1 ? getparameters(hash.slice(index+1, hash.length)) : {};
     console.log(parameters);
